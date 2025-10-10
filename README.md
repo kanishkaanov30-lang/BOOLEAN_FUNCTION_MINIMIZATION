@@ -32,17 +32,34 @@ Hardware – PCs, Cyclone II , USB flasher
 
 
 **Program:**
+module shift_register_3bit (
+    input  wire clk,     // clock input
+    input  wire rst,     // synchronous reset
+    input  wire serial_in, // serial data input
+    output reg  [2:0] q   // 3-bit register output
+);
 
+always @(posedge clk) begin
+    if (rst)
+        q <= 3'b000;          // reset all bits
+    else
+        q <= {q[1:0], serial_in}; // shift left
+end
+
+endmodule
 /* Program to implement the given logic function and to verify its operations in quartus using Verilog programming. 
 
 Developed by: RegisterNumber:*/
 
 
 **RTL realization**
+![WhatsApp Image 2025-10-10 at 21 12 38_924e3026](https://github.com/user-attachments/assets/6665f5f6-9096-4a2d-93eb-6714629e84b8)
 
 **Output:**
 
 **RTL**
+
+
 
 **Timing Diagram**
 
